@@ -16,10 +16,10 @@ public class ZooKeeperUtils implements InitializingBean {
 
     private ZooKeeper zooKeeper;
 
-    @Value("zookeeper.host")
+    @Value("${zookeeper.host}")
     private String host;
 
-    @Value("zookeeper.host")
+    @Value("${zookeeper.port}")
     private String port;
 
     @Override

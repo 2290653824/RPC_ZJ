@@ -29,21 +29,21 @@ public class ZookeeperServiceRegister implements ServiceRegister {
     private LoadBalance loadBalance;
 
     @Override
-    public void serviceRegister(String serviceName, InetSocketAddress inetSocketAddress) {
-        String path = ZOOKEEPER_RPC_ROOT_PATH + "/" + serviceName + inetSocketAddress.toString();
+    public void serviceRegister(String rpcServiceName, InetSocketAddress inetSocketAddress) {
+        String path = ZOOKEEPER_RPC_ROOT_PATH + "/" + rpcServiceName + inetSocketAddress.toString();
         try {
             zooKeeperUtils.createPersistentNode(path, inetSocketAddress.toString().getBytes());
         } catch (Exception e) {
-            log.error("ZookeeperServiceRegister register failed, serviceName = {}, address = {}", serviceName, inetSocketAddress);
+            log.error("ZookeeperServiceRegister register failed, rpcServiceName = {}, address = {}", rpcServiceName, inetSocketAddress);
         }
     }
 
     @Override
-    public InetSocketAddress serviceDiscovery(String serviceName) {
+    public InetSocketAddress serviceDiscovery(String rpcServiceName) {
         try {
-            List<String> serviceList = zooKeeperUtils.getChildren(serviceName);
+            List<String> serviceList = zooKeeperUtils.getChildren(rpcServiceName);
             if (serviceList.isEmpty()) {
-                throw new ServiceDiscoveryException("serviceDiscovery target serviceName:[" + serviceName + "] not found,serviceName");
+                throw new ServiceDiscoveryException("serviceDiscovery target serviceName:[" + rpcServiceName + "] not found,serviceName");
             }
             String target = loadBalance.loadBalance(serviceList);
             String[] hostAndPost = target.split(":");

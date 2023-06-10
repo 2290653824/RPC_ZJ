@@ -10,15 +10,15 @@ public interface ServiceRegister {
 
     /**
      * 将相关的数据注册到注册中心中
-     * @param serviceName
+     * @param
      * @param inetSocketAddress
      */
-    void serviceRegister(String serviceName , InetSocketAddress inetSocketAddress);
+    void serviceRegister(String rpcServiceName , InetSocketAddress inetSocketAddress);
 
     /**
      * 根据服务名发现相应的地址
-     * @param serviceName interfaceName+group+version
+     * @param rpcServiceName interfaceName+group+version
      * @return
      */
-    InetSocketAddress serviceDiscovery(String serviceName);
+    InetSocketAddress serviceDiscovery(String rpcServiceName);
 }
