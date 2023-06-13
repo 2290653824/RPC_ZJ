@@ -1,6 +1,8 @@
-package com.zj.rpcserver.serializer;
+package com.zj.rpcserver.serializer.impl;
 
 import com.zj.rpccommon.exception.SerializeException;
+import com.zj.rpcserver.serializer.Serializer;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
@@ -10,7 +12,7 @@ import java.io.ObjectOutputStream;
  * @author zhengjian
  * @date 2023-06-09 18:55
  */
-public class JDKSerializer implements Serializer{
+public class JDKSerializer implements Serializer {
     @Override
     public byte[] serialize(Object obj) {
         try(ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
