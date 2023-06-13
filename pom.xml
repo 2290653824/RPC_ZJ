@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>rpc-common</module>
+        <module>rpc-service-api</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
